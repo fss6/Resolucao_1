@@ -4,35 +4,36 @@ import com.resolucao1.util.Tipo;
 import com.resolucao1.util.TipoPrimitivo;
 
 /**
- * Um objeto desta classe representa uma Disjuncao Logica.
+ * Um objeto desta classe representa uma Expressao de Conjuncao logica.
  */
-public class ExpOr extends ExpBinaria {
+public class ExpConditional extends ExpBinaria{
 
 	/**
-	 * Controi uma Expressao de disjuncao logica  com as sub-expressoes
-	 * especificadas.Estas devem ser tais que sua avaliacao resulta em
+	 * Controi uma Expressao de Conjuncao logica  com as sub-expressoes
+	 * especificadas. Estas devem ser tais que sua avaliacao retorna
 	 * <code>ValorBooleano</code>
 	 *
 	 * @param esq Expressao da esquerda
 	 * @param dir Expressao da direita
 	 */
-	public ExpOr(Expressao esq, Expressao dir){
-		super(esq, dir, "or");
+	public ExpConditional(Expressao esq, Expressao dir) {
+		super(esq, dir, "->");
 	}
 
 
 	/**
-	 * Retorna o valor da Expressao de disjuncao logica
+	 * Retorna o valor da Expressao de Conjuncao Logica
 	 */
-	public Expressao avaliar(){
-		 
+	 public Expressao avaliar(){ 
+		
 		System.out.println("esq:" + getEsq());
 		System.out.println("dir:" + getDir());
-		ExpBinaria expressao = new ExpOr(getEsq(), getDir()); 
+		ExpNot expNot = new ExpNot(getEsq());
+		ExpBinaria expressao = new ExpOr(expNot, getDir());
 		
 		return expressao;
 	}
-
+ 
 	/**
 	 * Realiza a verificacao de tipos desta expressao.
 	 *

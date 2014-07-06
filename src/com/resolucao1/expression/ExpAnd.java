@@ -17,18 +17,20 @@ public class ExpAnd extends ExpBinaria{
 	 * @param dir Expressao da direita
 	 */
 	public ExpAnd(Expressao esq, Expressao dir) {
-		super(esq, dir, "and");
+		super(esq, dir, "^");
 	}
 
 
 	/**
 	 * Retorna o valor da Expressao de Conjuncao Logica
 	 */
-	 public Valor avaliar(){
-		return new ValorBooleano(
-					((ValorBooleano)getEsq().avaliar()).valor() &&
-					((ValorBooleano)getDir().avaliar()).valor()
-		);
+	 public Expressao avaliar(){
+		 
+		System.out.println("esq:" + getEsq());
+		System.out.println("dir:" + getDir());
+		ExpBinaria expressao = new ExpAnd(getEsq(), getDir()); 
+		
+		return expressao;
 	}
  
 	/**

@@ -68,11 +68,13 @@ public abstract class ExpBinaria implements Expressao {
 	 */
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
+		sb.append('(');
 		sb.append(esq.toString());
 		sb.append(' ');
 		sb.append(operador);
 		sb.append(' ');
 		sb.append(dir.toString());
+		sb.append(')');
 		return sb.toString();
 	}
 

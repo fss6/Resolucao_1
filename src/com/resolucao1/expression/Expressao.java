@@ -10,7 +10,7 @@ public interface Expressao {
 	/**
 	 * Avalia a expressao retornando seu Valor.
 	 */
-	Valor avaliar();
+	Expressao avaliar();
 
 	/**
 	 * Realiza a verificacao de tipos desta expressao.

@@ -262,6 +262,11 @@ Expressao PExpBinaria() :
 	  {
 	  	retorno = new ExpOr(retorno, param2);
 	  }
+	|
+	  <CONDITIONAL> param2 = PExpUnaria()
+	  {
+	  	retorno = new ExpConditional(retorno, param2);
+	  }
 	)*
 	)
 	{

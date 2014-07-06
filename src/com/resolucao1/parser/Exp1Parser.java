@@ -153,6 +153,7 @@ public class Exp1Parser implements Exp1ParserConstants {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case OR:
       case AND:
+      case CONDITIONAL:
         ;
         break;
       default:
@@ -169,6 +170,11 @@ public class Exp1Parser implements Exp1ParserConstants {
         jj_consume_token(OR);
         param2 = PExpUnaria();
                 retorno = new ExpOr(retorno, param2);
+        break;
+      case CONDITIONAL:
+        jj_consume_token(CONDITIONAL);
+        param2 = PExpUnaria();
+                retorno = new ExpConditional(retorno, param2);
         break;
       default:
         jj_la1[5] = jj_gen;
@@ -210,7 +216,7 @@ public class Exp1Parser implements Exp1ParserConstants {
       jj_la1_init_0();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x600,0x8600,0x88600,0x288600,0xc00000,0xc00000,};
+      jj_la1_0 = new int[] {0x600,0x8600,0x88600,0x288600,0x1c00000,0x1c00000,};
    }
 
   /** Constructor with InputStream. */

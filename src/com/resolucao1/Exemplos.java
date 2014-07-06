@@ -8,8 +8,11 @@
 package com.resolucao1;
 
 import com.resolucao1.expression.ExpAnd;
+import com.resolucao1.expression.ExpBinaria;
+import com.resolucao1.expression.ExpConditional;
 import com.resolucao1.expression.ExpNot;
 import com.resolucao1.expression.ExpOr;
+import com.resolucao1.expression.Expressao;
 import com.resolucao1.expression.ValorBooleano;
 import com.resolucao1.expression.ValorInteiro;
 import com.resolucao1.expression.ValorString;
@@ -34,14 +37,21 @@ public class Exemplos {
 	*/
 
     // Avalia    not ( (T and F) or (T and T) )
-	Programa prg = new Programa(
-                new ExpNot( new ExpOr(new ExpAnd( new ValorBooleano(true),new ValorBooleano(false)), 
-                                      new ExpAnd( new ValorBooleano(true), new  ValorBooleano(true)))));
-
+	Programa prg = null;//new Programa(
+                //new ExpNot( new ExpOr(new ExpAnd( new ValorBooleano(true),new ValorBooleano(false)), 
+                  //                    new ExpAnd( new ValorBooleano(true), new  ValorBooleano(true)))));
+	
+	//(T and F) -> (T or T) -> T
+	ExpAnd esq0 =  new ExpAnd(new ValorBooleano(true), new ValorBooleano(false));
+	ExpOr esq1 = new ExpOr(new ValorBooleano(true), new ValorBooleano(true));
+	ExpConditional esq = new ExpConditional(esq0, esq1);
+	ValorBooleano dir = new ValorBooleano(true);
+	prg = new Programa(new ExpConditional(esq, dir));
+	
 	if (!prg.checaTipo()) {
 		System.out.println("Erro de tipo");
 	} else {
-		System.out.println(prg.executar());
+		prg.executar();
 	}
 	
 	/* 

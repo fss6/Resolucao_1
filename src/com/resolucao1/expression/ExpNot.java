@@ -21,7 +21,8 @@ public class ExpNot extends ExpUnaria{
 	/**
 	 * Retorna o valor da Expressao de negacao logica.
 	 */
-	public Valor avaliar() {
+	public Expressao avaliar() {
+		
 		return new ValorBooleano(!((ValorBooleano) getExp().avaliar()).valor());
 	}
 
