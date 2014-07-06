@@ -216,7 +216,7 @@ public class Exp1Parser implements Exp1ParserConstants {
       jj_la1_init_0();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x600,0x8600,0x88600,0x288600,0x1c00000,0x1c00000,};
+      jj_la1_0 = new int[] {0x600,0x10600,0x110600,0x510600,0x1800800,0x1800800,};
    }
 
   /** Constructor with InputStream. */

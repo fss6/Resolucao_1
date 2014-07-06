@@ -26,9 +26,9 @@ public class ExpAnd extends ExpBinaria{
 	 */
 	 public Expressao avaliar(){
 		 
-		System.out.println("esq:" + getEsq());
-		System.out.println("dir:" + getDir());
-		ExpBinaria expressao = new ExpAnd(getEsq(), getDir()); 
+		Expressao esq = getEsq().avaliar();
+		Expressao dir = getDir().avaliar();
+		ExpBinaria expressao = (ExpBinaria) new ExpAnd(esq,dir); 
 		
 		return expressao;
 	}
@@ -40,7 +40,7 @@ public class ExpAnd extends ExpBinaria{
 	 *          <code>false</code> caso contrario.
 	 */
 	protected boolean checaTipoElementoTerminal() {
-		return (getEsq().getTipo().eBooleano() && getDir().getTipo().eBooleano());
+		return (getEsq().getTipo().eString() && getDir().getTipo().eString());
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class ExpAnd extends ExpBinaria{
 	 * @return os tipos possiveis desta expressao.
 	 */
 	public Tipo getTipo() {
-		return TipoPrimitivo.BOOLEANO;
+		return TipoPrimitivo.STRING;
 	}
 
 }

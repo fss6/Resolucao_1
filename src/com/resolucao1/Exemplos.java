@@ -8,86 +8,35 @@
 package com.resolucao1;
 
 import com.resolucao1.expression.ExpAnd;
-import com.resolucao1.expression.ExpBinaria;
 import com.resolucao1.expression.ExpConditional;
-import com.resolucao1.expression.ExpNot;
 import com.resolucao1.expression.ExpOr;
-import com.resolucao1.expression.Expressao;
-import com.resolucao1.expression.ValorBooleano;
-import com.resolucao1.expression.ValorInteiro;
 import com.resolucao1.expression.ValorString;
 
 public class Exemplos {
 
   public static void main(String [] args){
 
-	/*  
-
-    // Avalia   -4 + 12 - 3
-    Programa prg = new Programa(
-                         new  ExpSub( new ExpSoma( new ExpMenos(new ValorInteiro(4)), 
-                                                   new ValorInteiro(12)), 
-                                      new ValorInteiro(3)));
-	if (!prg.checaTipo()) {
-		System.out.println("Erro de tipo");
-	} else {
-		System.out.println(prg.executar());
-	}
-	
-	*/
-
     // Avalia    not ( (T and F) or (T and T) )
 	Programa prg = null;//new Programa(
                 //new ExpNot( new ExpOr(new ExpAnd( new ValorBooleano(true),new ValorBooleano(false)), 
                   //                    new ExpAnd( new ValorBooleano(true), new  ValorBooleano(true)))));
 	
-	//(T and F) -> (T or T) -> T
-	ExpAnd esq0 =  new ExpAnd(new ValorBooleano(true), new ValorBooleano(false));
-	ExpOr esq1 = new ExpOr(new ValorBooleano(true), new ValorBooleano(true));
+	//(P ^ Q) -> (P v R) -> R
+	ExpAnd esq0 =  new ExpAnd(new ValorString("P"), new ValorString("Q"));
+	ExpOr esq1 = new ExpOr(new ValorString("P"), new ValorString("R"));
 	ExpConditional esq = new ExpConditional(esq0, esq1);
-	ValorBooleano dir = new ValorBooleano(true);
+	ValorString dir = new ValorString("R");
 	prg = new Programa(new ExpConditional(esq, dir));
 	
 	if (!prg.checaTipo()) {
 		System.out.println("Erro de tipo");
 	} else {
+		System.out.println(prg.getExpressao());
 		prg.executar();
 	}
 	
 	/* 
-
-    // Avalia length("Hello" ++ " world" ++ "!");
-    prg = new Programa(
-                       new ExpLength(
-                             new ExpConcat(new ValorString("Hello"),
-                                           new ExpConcat(
-                                                  new ValorString(" world"),
-                                                  new ValorString("!")))));
-	if (!prg.checaTipo()) {
-		System.out.println("Erro de tipo");
-	} else {
-		System.out.println(prg.executar());
-	}
-
-
-    // Avalia  length("forro") == 5
-    prg = new Programa(new ExpEquals( new ExpLength(new ValorString("forro")), new ValorInteiro(5)));
-	if (!prg.checaTipo()) {
-		System.out.println("Erro de tipo");
-	} else {
-		System.out.println(prg.executar());
-	}
-
-   // Avalia  "hello" + " world" == "hello world"
-  prg = new Programa(new ExpEquals(new ExpConcat(new ValorString("hello"), new ValorString(" world")), 
-                                   new ValorString("hello world")));
-	if (!prg.checaTipo()) {
-		System.out.println("Erro de tipo");
-	} else {
-		System.out.println(prg.executar());
-	}
  
-
    // Avalia   not T ==  F and 1
   prg = new Programa(new ExpEquals(new ExpNot(new ValorBooleano(true)), 
                                    new ExpAnd(new ValorBooleano(false),new ValorInteiro(1))));

@@ -26,10 +26,8 @@ public class ExpConditional extends ExpBinaria{
 	 */
 	 public Expressao avaliar(){ 
 		
-		System.out.println("esq:" + getEsq());
-		System.out.println("dir:" + getDir());
-		ExpNot expNot = new ExpNot(getEsq());
-		ExpBinaria expressao = new ExpOr(expNot, getDir());
+		ExpNot expNot = new ExpNot(getEsq().avaliar());
+		ExpBinaria expressao = (ExpBinaria) new ExpOr(expNot, getDir().avaliar());
 		
 		return expressao;
 	}
@@ -41,7 +39,7 @@ public class ExpConditional extends ExpBinaria{
 	 *          <code>false</code> caso contrario.
 	 */
 	protected boolean checaTipoElementoTerminal() {
-		return (getEsq().getTipo().eBooleano() && getDir().getTipo().eBooleano());
+		return (getEsq().getTipo().eString() && getDir().getTipo().eString());
 	}
 
 	/**
@@ -50,7 +48,7 @@ public class ExpConditional extends ExpBinaria{
 	 * @return os tipos possiveis desta expressao.
 	 */
 	public Tipo getTipo() {
-		return TipoPrimitivo.BOOLEANO;
+		return TipoPrimitivo.STRING;
 	}
 
 }

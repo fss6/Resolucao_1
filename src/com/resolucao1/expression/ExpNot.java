@@ -23,7 +23,9 @@ public class ExpNot extends ExpUnaria{
 	 */
 	public Expressao avaliar() {
 		
-		return new ValorBooleano(!((ValorBooleano) getExp().avaliar()).valor());
+		ExpNot expNot = new ExpNot(getExp().avaliar());
+		return expNot;
+		//return new ValorBooleano(!((ValorBooleano) getExp().avaliar()).valor());
 	}
 
 	/**
@@ -33,7 +35,7 @@ public class ExpNot extends ExpUnaria{
 	 *          <code>false</code> caso contrario.
 	 */
 	protected boolean checaTipoElementoTerminal() {
-		return (getExp().getTipo().eBooleano());
+		return (getExp().getTipo().eString());
 	}
 
 	/**
@@ -42,7 +44,7 @@ public class ExpNot extends ExpUnaria{
 	 * @return os tipos possiveis desta expressao.
 	 */
 	public Tipo getTipo() {
-		return TipoPrimitivo.BOOLEANO;
+		return TipoPrimitivo.STRING;
 	}
 
 }

@@ -21,29 +21,29 @@ public interface Exp1ParserConstants {
   /** RegularExpression Id. */
   int FALSE = 10;
   /** RegularExpression Id. */
-  int INTEGER_LITERAL = 11;
+  int OR = 11;
   /** RegularExpression Id. */
-  int DECIMAL_LITERAL = 12;
+  int INTEGER_LITERAL = 12;
   /** RegularExpression Id. */
-  int HEX_LITERAL = 13;
+  int DECIMAL_LITERAL = 13;
   /** RegularExpression Id. */
-  int OCTAL_LITERAL = 14;
+  int HEX_LITERAL = 14;
   /** RegularExpression Id. */
-  int STRING_LITERAL = 15;
+  int OCTAL_LITERAL = 15;
   /** RegularExpression Id. */
-  int IDENTIFIER = 16;
+  int STRING_LITERAL = 16;
   /** RegularExpression Id. */
-  int LETTER = 17;
+  int IDENTIFIER = 17;
   /** RegularExpression Id. */
-  int DIGIT = 18;
+  int LETTER = 18;
   /** RegularExpression Id. */
-  int LPAREN = 19;
+  int DIGIT = 19;
   /** RegularExpression Id. */
-  int RPAREN = 20;
+  int LPAREN = 20;
   /** RegularExpression Id. */
-  int NOT = 21;
+  int RPAREN = 21;
   /** RegularExpression Id. */
-  int OR = 22;
+  int NOT = 22;
   /** RegularExpression Id. */
   int AND = 23;
   /** RegularExpression Id. */
@@ -67,6 +67,7 @@ public interface Exp1ParserConstants {
     "<MULTI_LINE_COMMENT>",
     "\"true\"",
     "\"false\"",
+    "\"v\"",
     "<INTEGER_LITERAL>",
     "<DECIMAL_LITERAL>",
     "<HEX_LITERAL>",
@@ -78,7 +79,6 @@ public interface Exp1ParserConstants {
     "\"(\"",
     "\")\"",
     "\"~\"",
-    "\"|\"",
     "\"^\"",
     "\"->\"",
     "\"<->\"",

@@ -69,6 +69,7 @@ TOKEN : /* TOKENS DE EXPRESSOES 1 */
 {
   < TRUE        : "true" >
 | < FALSE       : "false" >
+| < OR       : "v" >
 }
 
 TOKEN : /* LITERALS */
@@ -151,7 +152,6 @@ TOKEN : /* SEPARATORS */
 TOKEN : /* OPERATORS */
 {
   < NOT: "~" >
-| < OR: "|" >
 | < AND: "^" >
 | < CONDITIONAL: "->" >
 | < BICONDITIONAL: "<->" >
