@@ -23,14 +23,26 @@ public class ExpNot extends ExpUnaria{
 	 */
 	public Expressao avaliar(Expressao externa) {
 		
+		
+		// ExpNot(Exp)
 		if( getExp() instanceof ExpBiconditional
-			|| getExp() instanceof ExpConditional
-			|| getExp() instanceof ExpAnd
-			|| getExp() instanceof ExpOr)
-			
+							|| getExp() instanceof ExpConditional
+							|| getExp() instanceof ExpAnd
+							|| getExp() instanceof ExpOr)
 			return getExp().avaliar(this);
-		else
+		
+		// ExpNot(ValorString)
+		if( getExp() instanceof ValorString)
 			return new ExpNot(getExp().avaliar(this));
+		
+		// ExpNot(ExpNot(Expressao))
+		if( getExp() instanceof ExpNot){
+			Expressao aux = getExp();
+			return ((ExpUnaria) aux).getExp();
+		}
+		
+		
+			return null;
 		
 	}
 

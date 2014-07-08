@@ -258,7 +258,7 @@ Expressao PExpBinaria() :
 {
 	( retorno = PExpUnaria()
 	(
-	  <BICONDITIONAL> param2 = PExpUnaria()
+	 <BICONDITIONAL> param2 = PExpUnaria()
 	  {
 	  	retorno = new ExpBiconditional(retorno, param2);
 	  }
