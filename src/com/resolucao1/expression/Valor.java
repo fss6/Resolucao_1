@@ -7,6 +7,4 @@ package com.resolucao1.expression;
 
 public interface Valor extends Expressao{
 	
-	
-
 }

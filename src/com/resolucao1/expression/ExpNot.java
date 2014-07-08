@@ -14,18 +14,24 @@ public class ExpNot extends ExpUnaria{
 	 * @param exp Expressao a ser negada. Assume-se que sua avaliacao resulta
 	 *  em <code>ValorBooleano</code>.
 	 */
-	public ExpNot( Expressao exp) {
+	public ExpNot(Expressao exp) {
 		super(exp, "~");
 	}
 
 	/**
 	 * Retorna o valor da Expressao de negacao logica.
 	 */
-	public Expressao avaliar() {
+	public Expressao avaliar(Expressao externa) {
 		
-		ExpNot expNot = new ExpNot(getExp().avaliar());
-		return expNot;
-		//return new ValorBooleano(!((ValorBooleano) getExp().avaliar()).valor());
+		if( getExp() instanceof ExpBiconditional
+			|| getExp() instanceof ExpConditional
+			|| getExp() instanceof ExpAnd
+			|| getExp() instanceof ExpOr)
+			
+			return getExp().avaliar(this);
+		else
+			return new ExpNot(getExp().avaliar(this));
+		
 	}
 
 	/**

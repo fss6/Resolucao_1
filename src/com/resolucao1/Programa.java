@@ -5,9 +5,13 @@ import com.resolucao1.expression.Expressao;
 public class Programa{
 
 	private Expressao exp;
+	
+	public Programa(Expressao exp){
+		this.exp = exp;
+	}
 
 	public Expressao executar() {
-		Expressao result = exp.avaliar();
+		Expressao result = exp.avaliar(exp);
 		System.out.println(result);
 		return  result;		
  	}
@@ -15,11 +19,7 @@ public class Programa{
 	public boolean checaTipo() {
 		return exp.checaTipo();
  	}
-
-	public Programa(Expressao exp){
-		this.exp = exp;
-	}
-
+	
 	public Expressao getExpressao() {
 		return exp;
 	}

@@ -24,14 +24,21 @@ public class ExpConditional extends ExpBinaria{
 	/**
 	 * Retorna o valor da Expressao de Conjuncao Logica
 	 */
-	 public Expressao avaliar(){ 
+	 public Expressao avaliar(Expressao externa){ 
 		
-		ExpNot expNot = new ExpNot(getEsq().avaliar());
-		ExpBinaria expressao = (ExpBinaria) new ExpOr(expNot, getDir().avaliar());
+		Expressao esq = getEsq();
+		Expressao dir = getDir();
 		
-		return expressao;
+		if ( externa instanceof ExpNot){
+			dir = new ExpNot(dir);
+			return new ExpAnd(esq.avaliar(this), dir.avaliar(this));
+		}else{
+			esq = new ExpNot(esq);
+			return new ExpOr(esq.avaliar(this), dir.avaliar(this));
+		}
+		
 	}
- 
+	 
 	/**
 	 * Realiza a verificacao de tipos desta expressao.
 	 *

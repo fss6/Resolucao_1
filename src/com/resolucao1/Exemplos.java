@@ -1,49 +1,49 @@
-/* 
-   Execucao de alguns programas-testes.
-
-   Autor: Vander Alves
-   Data da ultima alteracao:  12/04/99
-*/
 
 package com.resolucao1;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
 import com.resolucao1.expression.ExpAnd;
 import com.resolucao1.expression.ExpConditional;
+import com.resolucao1.expression.ExpNot;
 import com.resolucao1.expression.ExpOr;
 import com.resolucao1.expression.ValorString;
+import com.resolucao1.parser.Exp1Parser;
+import com.resolucao1.parser.ParseException;
 
 public class Exemplos {
 
-  public static void main(String [] args){
-
-    // Avalia    not ( (T and F) or (T and T) )
-	Programa prg = null;//new Programa(
-                //new ExpNot( new ExpOr(new ExpAnd( new ValorBooleano(true),new ValorBooleano(false)), 
-                  //                    new ExpAnd( new ValorBooleano(true), new  ValorBooleano(true)))));
+  public static void main(String [] args) throws FileNotFoundException, ParseException{
+	  
+	Programa prg = null;
+	//~(P -> R)
 	
-	//(P ^ Q) -> (P v R) -> R
-	ExpAnd esq0 =  new ExpAnd(new ValorString("P"), new ValorString("Q"));
-	ExpOr esq1 = new ExpOr(new ValorString("P"), new ValorString("R"));
-	ExpConditional esq = new ExpConditional(esq0, esq1);
-	ValorString dir = new ValorString("R");
-	prg = new Programa(new ExpConditional(esq, dir));
+	/*ExpConditional exp = new ExpConditional(new ValorString("P"), new ValorString("R"));
+	ExpNot esq = new ExpNot(exp);
+	
+	prg = new Programa(esq);
 	
 	if (!prg.checaTipo()) {
 		System.out.println("Erro de tipo");
 	} else {
 		System.out.println(prg.getExpressao());
 		prg.executar();
-	}
-	
-	/* 
- 
-   // Avalia   not T ==  F and 1
-  prg = new Programa(new ExpEquals(new ExpNot(new ValorBooleano(true)), 
-                                   new ExpAnd(new ValorBooleano(false),new ValorInteiro(1))));
-	if (!prg.checaTipo()) {
-		System.out.println("Erro de tipo");
-	} else {
-		System.out.println(prg.executar());
 	}*/
+	
+	File file = new File("/Users/fabiosantos/Documents/workspace/Resolucao_1/run.txt");
+	InputStream fis = new FileInputStream(file);
+		
+	Exp1Parser exp1Parser = new Exp1Parser(fis);
+	prg = exp1Parser.Input();
+
+	if (prg.checaTipo()) {
+		System.out.println(prg.getExpressao());
+		prg.executar();
+	} else {
+		System.out.println("erro de tipos!");
+	}
  }
 }

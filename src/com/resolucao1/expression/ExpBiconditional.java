@@ -6,7 +6,7 @@ import com.resolucao1.util.TipoPrimitivo;
 /**
  * Um objeto desta classe representa uma Expressao de Conjuncao logica.
  */
-public class ExpAnd extends ExpBinaria{
+public class ExpBiconditional extends ExpBinaria{
 
 	/**
 	 * Controi uma Expressao de Conjuncao logica  com as sub-expressoes
@@ -16,28 +16,24 @@ public class ExpAnd extends ExpBinaria{
 	 * @param esq Expressao da esquerda
 	 * @param dir Expressao da direita
 	 */
-	public ExpAnd(Expressao esq, Expressao dir) {
-		super(esq, dir, "^");
+	public ExpBiconditional(Expressao esq, Expressao dir) {
+		super(esq, dir, "<->");//(P <-> Q)
 	}
 
 
 	/**
 	 * Retorna o valor da Expressao de Conjuncao Logica
 	 */
-	 public Expressao avaliar(Expressao externa){
-		 
+	 public Expressao avaliar(Expressao externa){ 
+		
 		Expressao esq = getEsq();
-		Expressao dir = getDir(); 
-		 
-		if(externa instanceof ExpNot){
-			esq = new ExpNot(esq);
-			dir = new ExpNot(dir);
-			return new ExpOr(esq.avaliar(this),dir.avaliar(this));
-		}else{
-			return new ExpAnd(esq.avaliar(this),dir.avaliar(this)); 
-		}
+		Expressao dir = getDir();
 		
+		Expressao exp1 = new ExpAnd(esq, dir);//(P ^ Q)
+		Expressao exp2 = new ExpAnd(new ExpNot(esq),new ExpNot(dir));//(~P ^ ~Q)
+		Expressao expressao = new ExpOr(exp1.avaliar(this), exp2.avaliar(this));//(P ^ Q) v (~P ^ ~Q)
 		
+		return expressao;
 	}
 	 
 	/**

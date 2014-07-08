@@ -24,13 +24,19 @@ public class ExpOr extends ExpBinaria {
 	/**
 	 * Retorna o valor da Expressao de disjuncao logica
 	 */
-	public Expressao avaliar(){
-		 
-		Expressao esq = getEsq().avaliar();
-		Expressao dir = getDir().avaliar();
-		ExpBinaria expressao = (ExpBinaria) new ExpOr(esq,dir); 
+	public Expressao avaliar(Expressao externa){
 		
-		return expressao;
+		Expressao esq = getEsq();
+		Expressao dir = getDir();
+		
+		if(externa instanceof ExpNot){
+			esq = new ExpNot(esq);
+			dir = new ExpNot(dir);
+			return new ExpAnd(esq.avaliar(this),dir.avaliar(this));
+		}else{
+			return new ExpOr(esq,dir);
+		}
+		 
 	}
 
 	/**

@@ -49,7 +49,7 @@ public abstract class ValorConcreto<T> implements Valor {
 	/**
 	 * Retorna o valor deste valor primitivo, i.e., ele mesmo.
 	 */
-	public Valor avaliar () {
+	public Valor avaliar (Expressao externa) {
 		return this;
 	}
 

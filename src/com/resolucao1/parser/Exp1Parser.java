@@ -70,7 +70,7 @@ public class Exp1Parser implements Exp1ParserConstants {
         Token token;
     token = jj_consume_token(STRING_LITERAL);
                 String tokenStr = token.toString();
-                tokenStr = tokenStr.substring(1,tokenStr.length()-1);
+                //tokenStr = tokenStr.substring(1,tokenStr.length());
                 {if (true) return new ValorString(tokenStr);}
     throw new Error("Missing return statement in function");
   }
@@ -154,6 +154,7 @@ public class Exp1Parser implements Exp1ParserConstants {
       case OR:
       case AND:
       case CONDITIONAL:
+      case BICONDITIONAL:
         ;
         break;
       default:
@@ -161,20 +162,25 @@ public class Exp1Parser implements Exp1ParserConstants {
         break label_1;
       }
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case AND:
-        jj_consume_token(AND);
+      case BICONDITIONAL:
+        jj_consume_token(BICONDITIONAL);
         param2 = PExpUnaria();
-                retorno = new ExpAnd(retorno, param2);
+                retorno = new ExpBiconditional(retorno, param2);
+        break;
+      case CONDITIONAL:
+        jj_consume_token(CONDITIONAL);
+        param2 = PExpUnaria();
+                retorno = new ExpConditional(retorno, param2);
         break;
       case OR:
         jj_consume_token(OR);
         param2 = PExpUnaria();
                 retorno = new ExpOr(retorno, param2);
         break;
-      case CONDITIONAL:
-        jj_consume_token(CONDITIONAL);
+      case AND:
+        jj_consume_token(AND);
         param2 = PExpUnaria();
-                retorno = new ExpConditional(retorno, param2);
+                retorno = new ExpAnd(retorno, param2);
         break;
       default:
         jj_la1[5] = jj_gen;
@@ -216,7 +222,7 @@ public class Exp1Parser implements Exp1ParserConstants {
       jj_la1_init_0();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x600,0x10600,0x110600,0x510600,0x1800800,0x1800800,};
+      jj_la1_0 = new int[] {0x600,0x10600,0x110600,0x510600,0x3800800,0x3800800,};
    }
 
   /** Constructor with InputStream. */

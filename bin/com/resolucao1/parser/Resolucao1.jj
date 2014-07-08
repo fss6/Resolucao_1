@@ -65,10 +65,10 @@ SPECIAL_TOKEN : /* COMMENTS */
 | <MULTI_LINE_COMMENT: "/*" (~["*"])* "*" ("*" | (~["*","/"] (~["*"])* "*"))* "/">
 }
 
-TOKEN : /* TOKENS DE EXPRESSOES 1 */
+TOKEN : /* TOKENS DE RESOLUCAO 1 */
 {
-  < TRUE        : "true" >
-| < FALSE       : "false" >
+  < TRUE     : "true" >
+| < FALSE    : "false" >
 | < OR       : "v" >
 }
 
@@ -86,18 +86,23 @@ TOKEN : /* LITERALS */
 |
   < #OCTAL_LITERAL: "0" (["0"-"7"])* >
 |
-  < STRING_LITERAL:
-      "\""
-      (   (~["\"","\\","\n","\r"])
-        | ("\\"
-            ( ["n","t","b","r","f","\\","'","\""]
-            | ["0"-"7"] ( ["0"-"7"] )?
-            | ["0"-"3"] ["0"-"7"] ["0"-"7"]
-            )
-          )
-      )*
-      "\""
-  >
+  < STRING_LITERAL :
+  (["A"-"Z"])+
+| 
+    "\""
+    (
+      (~[ "\"", "\\", "\n", "\r" ])
+    |
+      (
+        "\\"
+        (
+          [ "n", "t", "b", "r", "f", "\\", "'", "\"" ]
+        | [ "0"-"7" ] ([ "0"-"7" ])?
+        | [ "0"-"3" ] [ "0"-"7" ] [ "0"-"7" ]
+        )
+      )
+    )*
+    "\"" >
 }
 
 TOKEN : /* IDENTIFIERS */
@@ -184,7 +189,7 @@ Valor PValorString() :
 	token = <STRING_LITERAL>
 	{
 		String tokenStr = token.toString();
-		tokenStr = tokenStr.substring(1,tokenStr.length()-1);
+		//tokenStr = tokenStr.substring(1,tokenStr.length());
 		return new ValorString(tokenStr);
 	}
 }
@@ -253,9 +258,13 @@ Expressao PExpBinaria() :
 {
 	( retorno = PExpUnaria()
 	(
-	  <AND> param2 = PExpUnaria()
+	  <BICONDITIONAL> param2 = PExpUnaria()
 	  {
-	  	retorno = new ExpAnd(retorno, param2);
+	  	retorno = new ExpBiconditional(retorno, param2);
+	  }
+	|<CONDITIONAL> param2 = PExpUnaria()
+	  {
+	  	retorno = new ExpConditional(retorno, param2);
 	  }
 	|
 	  <OR> param2 = PExpUnaria()
@@ -263,10 +272,11 @@ Expressao PExpBinaria() :
 	  	retorno = new ExpOr(retorno, param2);
 	  }
 	|
-	  <CONDITIONAL> param2 = PExpUnaria()
+	 <AND> param2 = PExpUnaria()
 	  {
-	  	retorno = new ExpConditional(retorno, param2);
-	  }
+	  	retorno = new ExpAnd(retorno, param2);
+	  }	
+	  
 	)*
 	)
 	{

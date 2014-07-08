@@ -8,7 +8,7 @@ import com.resolucao1.util.TipoPrimitivo;
  */
 public class ValorBooleano extends ValorConcreto<Boolean> {
 
-	
+
 	/**
 	 * Cria um objeto encapsulando o valor booleano fornecido.
 	 */
