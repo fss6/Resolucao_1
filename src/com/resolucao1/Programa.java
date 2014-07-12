@@ -7,11 +7,11 @@ import com.resolucao1.expression.*;
 public class Programa{
 
 	private Expressao exp;
-	private ArrayList<Expressao> expressoes;
+	private ArrayList<Expressao> clausulas;
 	
 	public Programa(Expressao exp){
 		this.exp = exp;
-		this.expressoes = new ArrayList<>();
+		this.clausulas = new ArrayList<>();
 	}
 
 	public Expressao executar() {
@@ -34,21 +34,20 @@ public class Programa{
 	public void teste(Expressao exp){
 		
 		
-		this.expressoes.add(exp);
+		this.clausulas.add(exp);
 		int index = 0;
 		
-		while( index < expressoes.size()){
+		while( index < clausulas.size()){
 			
-			exp = this.expressoes.get(index);
+			exp = this.clausulas.get(index);
 			
 			if(exp instanceof ExpAnd){
 				
 				Expressao esq = ((ExpAnd) exp).getEsq();
-				this.expressoes.add(esq);
+				this.clausulas.add(esq);
 				Expressao dir = ((ExpAnd) exp).getDir();
-				this.expressoes.add(dir);
-				this.expressoes.remove(exp);
-				//index -= 1;
+				this.clausulas.add(dir);
+				this.clausulas.remove(exp);
 			}else{
 				index += 1;
 			}
@@ -58,7 +57,7 @@ public class Programa{
 		
 		int i = 0;
 		
-		for (Expressao expressao : this.expressoes) {
+		for (Expressao expressao : this.clausulas) {
 			System.out.println( i +": "+ expressao);
 			i += 1;
 		}
@@ -68,7 +67,7 @@ public class Programa{
 		
 		ArrayList<String[]> conjunto = new ArrayList<>();
 		
-		for (Expressao expressao : this.expressoes) {
+		for (Expressao expressao : this.clausulas) {
 			
 			conjunto.add(expressao.expressionToString().split(","));
 		}

@@ -6,9 +6,9 @@ import com.resolucao1.util.TipoPrimitivo;
 /**
  * Este valor primitivo encapsula um String.
  */
-public class ValorString extends ValorConcreto<String>{
+public class Literal extends ValorConcreto<String>{
 
- 	public ValorString(String valor) {
+ 	public Literal(String valor) {
 		super(valor);
 	}
 

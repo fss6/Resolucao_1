@@ -71,7 +71,7 @@ public class Exp1Parser implements Exp1ParserConstants {
     token = jj_consume_token(STRING_LITERAL);
                 String tokenStr = token.toString();
                 //tokenStr = tokenStr.substring(1,tokenStr.length());
-                {if (true) return new ValorString(tokenStr);}
+                {if (true) return new Literal(tokenStr);}
     throw new Error("Missing return statement in function");
   }
 
