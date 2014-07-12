@@ -1,6 +1,8 @@
 package com.resolucao1.expression;
 
 
+import java.util.ArrayList;
+
 import com.resolucao1.util.Tipo;
 
 /** 
@@ -28,6 +30,6 @@ public interface Expressao {
 	 */
 	Tipo getTipo();
 	
-	public String expressionToString();
+	public ArrayList<ArrayList<Expressao>> expressionToString();
 
 }

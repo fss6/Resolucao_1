@@ -1,5 +1,7 @@
 package com.resolucao1.expression;
 
+import java.util.ArrayList;
+
 import com.resolucao1.util.Tipo;
 import com.resolucao1.util.TipoPrimitivo;
 
@@ -77,13 +79,17 @@ public class ExpNot extends ExpUnaria{
 	}
 
 	@Override
-	public String expressionToString() {
-		
-		
-		StringBuffer sb = new StringBuffer();
+	public ArrayList<ArrayList <Expressao>> expressionToString() {
+	
+		ArrayList<ArrayList <Expressao>> list = new ArrayList<>();
+		ArrayList <Expressao> exp = new ArrayList<>();
+		exp.add(this);
+		list.add(exp);
+		/*StringBuffer sb = new StringBuffer();
 		sb.append('~');
 		sb.append(getExp().expressionToString());
-		return sb.toString();
+		return sb.toString();*/
+		return list;
 	}
 
 }

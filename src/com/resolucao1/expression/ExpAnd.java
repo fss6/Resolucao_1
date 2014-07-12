@@ -1,6 +1,8 @@
 package com.resolucao1.expression;
 
 
+import java.util.ArrayList;
+
 import com.resolucao1.util.Tipo;
 import com.resolucao1.util.TipoPrimitivo;
 
@@ -62,13 +64,21 @@ public class ExpAnd extends ExpBinaria{
 	
 
 	@Override
-	public String expressionToString() {
+	public ArrayList<ArrayList<Expressao>> expressionToString() {
 		
-		StringBuffer sb = new StringBuffer();
+		ArrayList<ArrayList<Expressao>> list = new ArrayList<>();
+		
+		ArrayList<ArrayList<Expressao>> esq = getEsq().expressionToString();
+		list.addAll(esq);
+		ArrayList<ArrayList<Expressao>> dir = getDir().expressionToString();
+		list.addAll(dir);
+		
+		return list;
+		/*StringBuffer sb = new StringBuffer();
 		sb.append(getEsq().expressionToString());
 		sb.append(',');
 		sb.append(getDir().expressionToString());
-		return sb.toString();
+		return sb.toString();*/
 		
 	}
 

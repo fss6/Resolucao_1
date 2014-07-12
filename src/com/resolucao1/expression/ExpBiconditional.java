@@ -1,5 +1,7 @@
 package com.resolucao1.expression;
 
+import java.util.ArrayList;
+
 import com.resolucao1.util.Tipo;
 import com.resolucao1.util.TipoPrimitivo;
 
@@ -57,7 +59,7 @@ public class ExpBiconditional extends ExpBinaria{
 
 
 	@Override
-	public String expressionToString() {
+	public ArrayList<ArrayList<Expressao>> expressionToString() {
 		// TODO Auto-generated method stub
 		return null;
 	}

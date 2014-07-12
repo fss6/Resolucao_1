@@ -1,37 +1,76 @@
 package com.resolucao1;
 
 import java.util.ArrayList;
-
 import com.resolucao1.expression.*;
 
 public class Programa{
 
-	private Expressao exp;
+	private Expressao expressao;
 	private ArrayList<Expressao> clausulas;
+	private ArrayList<ArrayList<Expressao>> clausulas2;
 	
-	public Programa(Expressao exp){
-		this.exp = exp;
+	public Programa(Expressao expressao){
+		this.expressao = expressao;
 		this.clausulas = new ArrayList<>();
 	}
 
 	public Expressao executar() {
 		
+		printExpressao("Expressao", expressao);
+		printExpressao("FNC",expressao.avaliar(expressao));
+		printExpressao("Por refutacao",(new ExpNot(expressao)).avaliar(expressao));
+		separarClausulas(expressao);
 		
-		System.out.println("EXP: " + exp);
-		Expressao result = exp.avaliar(exp);
-		System.out.println("FNC: " + result);
-		System.out.println("----------");
-		result = new ExpNot(result);
-		System.out.println("Por refutacao: " + result);
-		result = result.avaliar(result);
-		System.out.println("Result Refutacao: " + result);
-		System.out.println("----------");
-		teste(result);
-		
-		return  result;		
+		return  expressao;		
  	}
 	
-	public void teste(Expressao exp){
+	private void printExpressao(String titulo, Expressao exp){
+		
+		this.expressao = exp;
+		System.out.println("----------------- " + titulo + " -----------------");
+		System.out.println();
+		System.out.println(this.expressao);
+		System.out.println();
+		
+	}
+	
+	private void printClausulas(String titulo){
+		
+		System.out.println("----------------- " + titulo + " -----------------");
+		System.out.println();
+		int count = 0;
+		System.out.print("{");
+		
+		for (ArrayList<Expressao> clausula : this.clausulas2) {
+			
+			System.out.print("[ ");
+			
+			for (int i = 0 ; i < clausula.size() ; i++) {
+				
+				if( i < clausula.size() - 1){
+					System.out.print(clausula.get(i) +", ");
+				}else{
+					System.out.print(clausula.get(i));
+				}
+				
+			}
+			
+			if(count < this.clausulas2.size() - 1){
+				System.out.print(" ], ");
+				count += 1;
+			}else{
+				System.out.print(" ]");
+			}
+			
+		
+		}
+		
+		System.out.println("}");
+		System.out.println();
+		
+	}
+	
+	private void separarClausulas(Expressao exp){
 		
 		
 		this.clausulas.add(exp);
@@ -42,7 +81,6 @@ public class Programa{
 			exp = this.clausulas.get(index);
 			
 			if(exp instanceof ExpAnd){
-				
 				Expressao esq = ((ExpAnd) exp).getEsq();
 				this.clausulas.add(esq);
 				Expressao dir = ((ExpAnd) exp).getDir();
@@ -55,40 +93,25 @@ public class Programa{
 			
 		}
 		
-		int i = 0;
-		
-		for (Expressao expressao : this.clausulas) {
-			System.out.println( i +": "+ expressao);
-			i += 1;
-		}
-		
-		
-		System.out.println("Agrupar -----------------------");
-		
-		ArrayList<String[]> conjunto = new ArrayList<>();
+		ArrayList<ArrayList<Expressao>> conjunto = new ArrayList<>();
 		
 		for (Expressao expressao : this.clausulas) {
 			
-			conjunto.add(expressao.expressionToString().split(","));
+			conjunto.addAll(expressao.expressionToString());
 		}
 		
-		for (String[] strings : conjunto) {
-			System.out.print("{");
-			for (String string : strings) {
-				System.out.print(" " + string + " ");
-			}
-			System.out.print("}\n");
-		}
+			this.clausulas2 = conjunto;
 		
+		printClausulas("Clausulas");
 		
 	}
 
 	public boolean checaTipo() {
-		return exp.checaTipo();
+		return expressao.checaTipo();
  	}
 	
 	public Expressao getExpressao() {
-		return exp;
+		return expressao;
 	}
 
 }

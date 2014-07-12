@@ -17,13 +17,13 @@ public class Exemplos {
 	File file = new File("/Users/fabiosantos/Documents/workspace/Resolucao_1/run.txt");
 	InputStream fis = new FileInputStream(file);
 		
-	Exp1Parser exp1Parser = new Exp1Parser(fis);
-	prg = exp1Parser.Input();
+	new Exp1Parser(fis);
+	prg = Exp1Parser.Input();
 
 	if (prg.checaTipo()) {
 		prg.executar();
 	} else {
-		System.out.println("erro de tipos!");
+		System.out.println("erro encontrado!");
 	}
  }
 }

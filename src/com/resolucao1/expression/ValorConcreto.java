@@ -68,16 +68,18 @@ public abstract class ValorConcreto<T> implements Valor {
 		return true;
 	}
 	
-	public void agrupar(ArrayList<Expressao> exp) {
-		// TODO Auto-generated method stub
-		exp.add(this);
-	}
-	
-	public String expressionToString() {
-		// TODO Auto-generated method stub
-		StringBuffer sb = new StringBuffer();
+	public ArrayList<ArrayList <Expressao>> expressionToString() {
+		
+		ArrayList<ArrayList <Expressao>> list = new ArrayList<>();
+		ArrayList <Expressao> clausula = new ArrayList<>();
+		
+		clausula.add(this);
+		list.add(clausula);
+		
+		return list;
+		/*StringBuffer sb = new StringBuffer();
 		sb.append(this.valor().toString());
-		return sb.toString();
+		return sb.toString();*/
 	}
 
 }
