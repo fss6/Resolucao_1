@@ -1,5 +1,7 @@
 package com.resolucao1.expression;
 
+import java.util.ArrayList;
+
 import com.resolucao1.expression.Valor;
 
 /**
@@ -65,4 +67,17 @@ public abstract class ValorConcreto<T> implements Valor {
 	public boolean checaTipo() {
 		return true;
 	}
+	
+	public void agrupar(ArrayList<Expressao> exp) {
+		// TODO Auto-generated method stub
+		exp.add(this);
+	}
+	
+	public String expressionToString() {
+		// TODO Auto-generated method stub
+		StringBuffer sb = new StringBuffer();
+		sb.append(this.valor().toString());
+		return sb.toString();
+	}
+
 }

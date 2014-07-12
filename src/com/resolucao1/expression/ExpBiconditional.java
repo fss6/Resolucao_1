@@ -55,4 +55,11 @@ public class ExpBiconditional extends ExpBinaria{
 		return TipoPrimitivo.STRING;
 	}
 
+
+	@Override
+	public String expressionToString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

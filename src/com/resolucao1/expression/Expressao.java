@@ -1,5 +1,6 @@
 package com.resolucao1.expression;
 
+
 import com.resolucao1.util.Tipo;
 
 /** 
@@ -26,5 +27,7 @@ public interface Expressao {
 	 * @return os tipos possiveis desta expressao.
 	 */
 	Tipo getTipo();
+	
+	public String expressionToString();
 
 }

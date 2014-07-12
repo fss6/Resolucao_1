@@ -38,7 +38,8 @@ public class ExpOr extends ExpBinaria {
 		}
 		 
 	}
-
+	
+	
 	/**
 	 * Realiza a verificacao de tipos desta expressao.
 	 *
@@ -56,6 +57,15 @@ public class ExpOr extends ExpBinaria {
 	 */
 	public Tipo getTipo() {
 		return TipoPrimitivo.STRING;
+	}
+
+	@Override
+	public String expressionToString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append(getEsq().expressionToString());
+		sb.append(',');
+		sb.append(getDir().expressionToString());
+		return sb.toString();
 	}
 
 }

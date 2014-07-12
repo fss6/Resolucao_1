@@ -58,4 +58,9 @@ public class ExpConditional extends ExpBinaria{
 		return TipoPrimitivo.STRING;
 	}
 
+	public String expressionToString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

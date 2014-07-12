@@ -65,4 +65,25 @@ public class ExpNot extends ExpUnaria{
 		return TipoPrimitivo.STRING;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		if(getExp() instanceof ValorString && obj instanceof ValorString){
+			return ((ValorString) getExp()).valor().equals(((ValorString) obj).valor());
+		}else{
+			return false;
+		}
+		
+	}
+
+	@Override
+	public String expressionToString() {
+		
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append('~');
+		sb.append(getExp().expressionToString());
+		return sb.toString();
+	}
+
 }

@@ -1,5 +1,6 @@
 package com.resolucao1.expression;
 
+
 import com.resolucao1.util.Tipo;
 import com.resolucao1.util.TipoPrimitivo;
 
@@ -57,6 +58,18 @@ public class ExpAnd extends ExpBinaria{
 	 */
 	public Tipo getTipo() {
 		return TipoPrimitivo.STRING;
+	}
+	
+
+	@Override
+	public String expressionToString() {
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append(getEsq().expressionToString());
+		sb.append(',');
+		sb.append(getDir().expressionToString());
+		return sb.toString();
+		
 	}
 
 }
