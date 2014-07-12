@@ -54,7 +54,7 @@ public interface Exp1ParserConstants {
   /** Lexical state. */
   int DEFAULT = 0;
 
-  /** Literal token values. */
+  /** ValorLiteral token values. */
   String[] tokenImage = {
     "<EOF>",
     "\" \"",

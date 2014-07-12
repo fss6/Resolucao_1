@@ -31,8 +31,8 @@ public class ExpNot extends ExpUnaria{
 							|| getExp() instanceof ExpOr)
 			return getExp().avaliar(this);
 		
-		// ExpNot(Literal)
-		if( getExp() instanceof Literal)
+		// ExpNot(ValorLiteral)
+		if( getExp() instanceof ValorLiteral)
 			return new ExpNot(getExp().avaliar(this));
 		
 		// ExpNot(ExpNot(Expressao))
@@ -68,8 +68,8 @@ public class ExpNot extends ExpUnaria{
 	@Override
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub
-		if(getExp() instanceof Literal && obj instanceof Literal){
-			return ((Literal) getExp()).valor().equals(((Literal) obj).valor());
+		if(getExp() instanceof ValorLiteral && obj instanceof ValorLiteral){
+			return ((ValorLiteral) getExp()).valor().equals(((ValorLiteral) obj).valor());
 		}else{
 			return false;
 		}
