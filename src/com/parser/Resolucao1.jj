@@ -6,8 +6,8 @@ PARSER_BEGIN(Exp1Parser)
 
 package com.parser;
 
-import com.resolucao1.*;
-import com.expression.*;
+import com.metodo.resolucao1.*;
+import com.expressao.*;
 import com.util.*;
 
 public class Exp1Parser {
