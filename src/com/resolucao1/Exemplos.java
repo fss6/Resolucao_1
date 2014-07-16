@@ -5,8 +5,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import com.resolucao1.parser.Exp1Parser;
-import com.resolucao1.parser.ParseException;
+
+import com.parser.Exp1Parser;
+import com.parser.ParseException;
 
 public class Exemplos {
 

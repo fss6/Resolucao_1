@@ -1,7 +1,8 @@
 package com.resolucao1;
 
 import java.util.ArrayList;
-import com.resolucao1.expression.*;
+
+import com.expression.*;
 
 public class Programa{
 
@@ -18,7 +19,7 @@ public class Programa{
 	public Expressao executar() {
 		
 		printExpressao("Expressao", expressao);
-		printExpressao("FNC",expressao.avaliar(expressao));
+		printExpressao("FND",expressao.avaliar(expressao));
 		printExpressao("Por refutacao",(new ExpNot(expressao)).avaliar(expressao));
 		separarClausulas(expressao);
 		resolucao();
@@ -39,12 +40,13 @@ public class Programa{
 			while (j < conjunto.get(i).size()){
 				
 				test = conjunto.get(i).get(j);
-
+				
+				//remove se o par complementar for encontrado
 				if(encontrarComplementar(conjunto.get(i).get(j), i + 1)){
 					
 					conjunto.get(i).remove(j);
-					
 					j = 0;
+					
 				}else{
 					j += 1;
 				}
